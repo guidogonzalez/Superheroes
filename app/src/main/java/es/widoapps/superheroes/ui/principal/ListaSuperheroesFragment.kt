@@ -43,7 +43,7 @@ class ListaSuperheroesFragment : Fragment() {
             rvSuperheroes.visibility = View.GONE
             tvErrorCargar.visibility = View.GONE
             pbCargando.visibility = View.VISIBLE
-            viewModel.extraerBaseDatosRemota()
+            viewModel.extraerBddRemota()
             refreshLayout.isRefreshing = false
         }
 

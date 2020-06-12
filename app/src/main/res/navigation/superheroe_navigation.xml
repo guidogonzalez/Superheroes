@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/listaSuperheroesFragment"
         android:name="es.widoapps.superheroes.ui.principal.ListaSuperheroesFragment"
-        android:label="ListaSuperheroesFragment" >
+        android:label="Superheroes">
         <action
             android:id="@+id/action_listaSuperheroesFragment_to_superheroeFragment"
             app:destination="@id/superheroeFragment" />
@@ -16,14 +16,14 @@
     <fragment
         android:id="@+id/superheroeFragment"
         android:name="es.widoapps.superheroes.ui.detalles.SuperheroeFragment"
-        android:label="fragment_superheroe"
-        tools:layout="@layout/fragment_superheroe" >
+        android:label="Superheroe"
+        tools:layout="@layout/fragment_superheroe">
         <action
             android:id="@+id/action_superheroeFragment_to_listaSuperheroesFragment"
             app:destination="@id/listaSuperheroesFragment" />
         <argument
             android:name="id_superheroe"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
 </navigation>

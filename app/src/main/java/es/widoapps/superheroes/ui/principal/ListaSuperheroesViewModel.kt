@@ -4,13 +4,16 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import es.widoapps.superheroes.api.SuperheroeApiService
+import es.widoapps.superheroes.basededatos.SuperheroeBdd
 import es.widoapps.superheroes.modelo.Superheroe
 import es.widoapps.superheroes.util.BaseViewModel
+import es.widoapps.superheroes.util.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 class ListaSuperheroesViewModel(application: Application) : BaseViewModel(application),
     CoroutineScope {
@@ -26,12 +29,35 @@ class ListaSuperheroesViewModel(application: Application) : BaseViewModel(applic
     // Notifica a quien este escuchando este ViewModel que el sistema está cargando (cuando no hay ningún error), es decir, los datos no han llegado todavía
     val cargando = MutableLiveData<Boolean>()
 
+    private var prefHelper = SharedPreferencesHelper(getApplication())
+    // 5 días
+    private var tiempoActualizacion = 432000000L
+
     fun recargar() {
 
-        extraerBaseDatosRemota()
+        // Obtenemos hace cuanto hemos guardado la base de datos
+        val updateTime = prefHelper.getUpdateTime()
+
+        // Si no han pasado más de 5 minutos desde que hemos guardado la base de datos ejecutamos desde la base de datos, sino desde el endpoint
+        if (updateTime != null && updateTime != 0L && (System.currentTimeMillis() - updateTime < tiempoActualizacion)) {
+            extraerBddLocal()
+        } else {
+            extraerBddRemota()
+        }
     }
 
-    fun extraerBaseDatosRemota() {
+    private fun extraerBddLocal() {
+
+        cargando.value = true;
+
+        launch {
+            val superheroes = SuperheroeBdd(getApplication()).superheroeDao().getSuperheroes()
+            superheroesRecibido(superheroes)
+            Toast.makeText(getApplication(), "Base de datos local", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun extraerBddRemota() {
 
         cargando.value = true
 
@@ -44,7 +70,7 @@ class ListaSuperheroesViewModel(application: Application) : BaseViewModel(applic
 
                     override fun onSuccess(listaSuperheroes: List<Superheroe>) {
 
-                        superheroesRecibido(listaSuperheroes)
+                        guardarBddLocal(listaSuperheroes)
                     }
 
                     override fun onError(e: Throwable) {
@@ -60,6 +86,32 @@ class ListaSuperheroesViewModel(application: Application) : BaseViewModel(applic
         superheroes.value = listaSuperheroes
         superheroesErrorCargar.value = false
         cargando.value = false
+    }
+
+    private fun guardarBddLocal(list: List<Superheroe>) {
+
+        // Guardamos en la base de datos en otro hilo
+        launch {
+
+            val dao = SuperheroeBdd(getApplication()).superheroeDao()
+            // Borramos los datos de la base de datos para que no haya conflicto
+            dao.borrarSuperheroes()
+            // Coge una lista y la expande en elementos individuales
+            val result = dao.insertarTodo(*list.toTypedArray())
+
+            var i = 0
+
+            while (i < list.size) {
+                list[i].uuid = result[i].toInt()
+                ++i
+            }
+
+            // Actualizamos la lista del ViewModel
+            superheroesRecibido(list)
+        }
+
+        // Guardamos cuando hemos guardado la base de datos
+        prefHelper.saveUpdateTime(System.currentTimeMillis())
     }
 
     override fun onCleared() {
