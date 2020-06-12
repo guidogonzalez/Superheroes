@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/superheroe_navigation"
+    app:startDestination="@id/listaSuperheroesFragment">
+
+    <fragment
+        android:id="@+id/listaSuperheroesFragment"
+        android:name="es.widoapps.superheroes.ui.principal.ListaSuperheroesFragment"
+        android:label="ListaSuperheroesFragment" >
+        <action
+            android:id="@+id/action_listaSuperheroesFragment_to_superheroeFragment"
+            app:destination="@id/superheroeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/superheroeFragment"
+        android:name="es.widoapps.superheroes.ui.detalles.SuperheroeFragment"
+        android:label="fragment_superheroe"
+        tools:layout="@layout/fragment_superheroe" >
+        <action
+            android:id="@+id/action_superheroeFragment_to_listaSuperheroesFragment"
+            app:destination="@id/listaSuperheroesFragment" />
+        <argument
+            android:name="id_superheroe"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>
