@@ -8,12 +8,29 @@
             name="superheroe"
             type="es.widoapps.superheroes.modelo.Superheroe" />
 
+        <variable
+            name="listener"
+            type="es.widoapps.superheroes.util.SuperheroeClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="240dp"
+        android:onClick="@{listener::onSuperheroeClicked}"
         android:padding="4dp">
+
+        <!-- Para almacenar la id y poder usarla para pasar de pantalla -->
+        <TextView
+            android:id="@+id/IdSuperheroe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="@{String.valueOf(superheroe.uuid)}"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -61,6 +78,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
