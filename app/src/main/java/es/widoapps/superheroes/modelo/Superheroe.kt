@@ -62,9 +62,6 @@ data class Habilidad(
 
 data class Apariencia(
 
-    @SerializedName("gender")
-    val genero: String?,
-
     @SerializedName("race")
     val raza: String?,
 
@@ -76,15 +73,6 @@ data class Apariencia(
 )
 
 data class UrlImagen(
-
-    @SerializedName("xs")
-    val xs: String?,
-
-    @SerializedName("sm")
-    val sm: String?,
-
-    @SerializedName("md")
-    val md: String?,
 
     @SerializedName("lg")
     val lg: String?
