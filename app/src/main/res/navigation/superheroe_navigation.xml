@@ -11,7 +11,11 @@
         android:label="Superheroes">
         <action
             android:id="@+id/action_listaSuperheroesFragment_to_superheroeFragment"
-            app:destination="@id/superheroeFragment" />
+            app:destination="@id/superheroeFragment"
+            app:enterAnim="@anim/slide_left"
+            app:exitAnim="@anim/wait_anim"
+            app:popEnterAnim="@anim/wait_anim"
+            app:popExitAnim="@anim/slide_right" />
     </fragment>
     <fragment
         android:id="@+id/superheroeFragment"

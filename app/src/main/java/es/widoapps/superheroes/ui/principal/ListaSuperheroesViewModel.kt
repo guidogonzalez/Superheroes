@@ -53,7 +53,6 @@ class ListaSuperheroesViewModel(application: Application) : BaseViewModel(applic
         launch {
             val superheroes = SuperheroeBdd(getApplication()).superheroeDao().getSuperheroes()
             superheroesRecibido(superheroes)
-            Toast.makeText(getApplication(), "Base de datos local", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -6,6 +6,7 @@ import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.skydoves.progressview.ProgressView
 import es.widoapps.superheroes.R
 
 fun getProgressDrawable(context: Context): CircularProgressDrawable {
@@ -32,4 +33,17 @@ fun ImageView.cargarImagen(uri: String?, progressDrawable: CircularProgressDrawa
 @BindingAdapter("android:urlImagen")
 fun cargarImagen(view: ImageView, url: String?) {
     view.cargarImagen(url, getProgressDrawable(view.context))
+}
+
+@BindingAdapter("progressView_progress")
+fun bindProgressViewProgress(progressView: ProgressView, value: String?) {
+
+    value?.let {
+        progressView.progress = value.toString().toFloat()
+    }
+}
+
+@BindingAdapter("progressView_labelText")
+fun bindProgressViewLabelText(progressView: ProgressView, text: String?) {
+    progressView.labelText = text
 }

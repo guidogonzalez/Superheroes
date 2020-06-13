@@ -1,5 +1,25 @@
 <resources>
+
     <string name="app_name">Superheroes</string>
 
-    <string name="texto_error_cargar">An error ocurred while loading data</string>
+    <string name="titulo_altura">Height</string>
+    <string name="titulo_peso">Weight</string>
+    <string name="titulo_habilidad">Powerstats</string>
+
+    <string name="titulo_int">INT</string>
+    <string name="titulo_fue">STR</string>
+    <string name="titulo_vel">SPD</string>
+    <string name="titulo_dur">DUR</string>
+    <string name="titulo_pod">POW</string>
+    <string name="titulo_com">COM</string>
+
+    <string name="titulo_inteligencia">Intelligence</string>
+    <string name="titulo_fuerza">Strength</string>
+    <string name="titulo_velocidad">Speed</string>
+    <string name="titulo_durabilidad">Durability</string>
+    <string name="titulo_poder">Power</string>
+    <string name="titulo_combate">Combat</string>
+
+    <string name="texto_error_cargar">An error ocurred while loading data.</string>
+
 </resources>

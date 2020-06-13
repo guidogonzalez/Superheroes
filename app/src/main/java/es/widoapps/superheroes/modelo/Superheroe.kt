@@ -37,7 +37,7 @@ data class Habilidad(
     @SerializedName("intelligence")
     val inteligencia: String?,
 
-    @SerializedName("strenght")
+    @SerializedName("strength")
     val fuerza: String?,
 
     @SerializedName("speed")
@@ -51,7 +51,14 @@ data class Habilidad(
 
     @SerializedName("combat")
     val combate: String?
-)
+) {
+    fun getIntString(): String = "$inteligencia/100"
+    fun getFueString(): String = "$fuerza/100"
+    fun getVelString(): String = "$velocidad/100"
+    fun getDurString(): String = "$durabilidad/100"
+    fun getPodString(): String = "$poder/100"
+    fun getComString(): String = "$combate/100"
+}
 
 data class Apariencia(
 

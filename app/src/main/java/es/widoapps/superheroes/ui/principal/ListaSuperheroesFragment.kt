@@ -18,6 +18,10 @@ class ListaSuperheroesFragment : Fragment() {
     // Le pasamos una lista vacía
     private val superheroesAdaptador = ListaSuperheroesAdaptador(arrayListOf())
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
