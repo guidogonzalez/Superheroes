@@ -12,10 +12,10 @@
         <action
             android:id="@+id/action_listaSuperheroesFragment_to_superheroeFragment"
             app:destination="@id/superheroeFragment"
-            app:enterAnim="@anim/slide_left"
-            app:exitAnim="@anim/wait_anim"
-            app:popEnterAnim="@anim/wait_anim"
-            app:popExitAnim="@anim/slide_right" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/superheroeFragment"
@@ -24,7 +24,9 @@
         tools:layout="@layout/fragment_superheroe">
         <action
             android:id="@+id/action_superheroeFragment_to_listaSuperheroesFragment"
-            app:destination="@id/listaSuperheroesFragment" />
+            app:destination="@id/listaSuperheroesFragment"
+            app:popUpTo="@id/listaSuperheroesFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="id_superheroe"
             android:defaultValue="0"

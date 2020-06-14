@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import es.widoapps.superheroes.R
 import es.widoapps.superheroes.databinding.ItemSuperheroeBinding
 import es.widoapps.superheroes.modelo.Superheroe
+import es.widoapps.superheroes.ui.detalles.SuperheroeFragment
+import es.widoapps.superheroes.ui.principal.ListaSuperheroesFragment
 import es.widoapps.superheroes.ui.principal.ListaSuperheroesFragmentDirections
 import es.widoapps.superheroes.util.SuperheroeClickListener
 import kotlinx.android.synthetic.main.item_superheroe.view.*
@@ -52,7 +54,6 @@ class ListaSuperheroesAdaptador(private val listaSuperheroes: ArrayList<Superher
 
         val uuid = view.IdSuperheroe.text.toString().toInt()
 
-        // Cambiamos de pantalla pasándole por parámetro
         val action =
             ListaSuperheroesFragmentDirections.actionListaSuperheroesFragmentToSuperheroeFragment()
         action.idSuperheroe = uuid
