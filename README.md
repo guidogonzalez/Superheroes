@@ -10,8 +10,8 @@ Además de consultar una API para extraer los datos e integrarlos en la base de 
 </br>
 
 <p align="center">
-<img src="/imagenes/1.png"/>
-<img src="/imagenes/2.png"/>
+<img src="/imagenes/1.png" width="32%"/>
+<img src="/imagenes/2.png" width="32%"/>
 </p>
 
 
