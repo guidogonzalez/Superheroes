@@ -24,7 +24,7 @@ Através de [Descargar](https://github.com/guidogonzalez/Superheroes/tree/master
 ## Tecnologías & librerías
 
 - Mínimo SDK level 21
-- [Kotlin](https://kotlinlang.org/) + [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) para asincronia.
+- [Kotlin](https://kotlinlang.org/)
 - JetPack
   - LiveData - notifica los cambios a las vistas.
   - Lifecycle - disponer de datos de observación cuando cambie el estado del ciclo de vida.
