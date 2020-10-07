@@ -47,10 +47,3 @@ Superheroes está basado en el patrón de diseño MVVM.
 ## API abierta
 
 Superheroes utiliza [SuperheroesAPI](https://akabab.github.io/superhero-api/api/) para construir el API REST.
-
-# Licencia
-```xml
-Diseñado y desarrollado por Guido González
-
-Totalmente libre de uso, solo dar créditos en caso de uso comercial.
-```
